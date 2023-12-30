@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Mileage Calculator</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+        scroll-behavior: smooth;
+        height: auto;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* For Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 18px 27px rgb(0 0 0 / 38%);
+        margin: 20px;
+        text-align: -webkit-center;
+    }
+
+    input {
+        margin: 10px;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #383838;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: .5s;
+    }
+
+    button:hover {
+        transition: .5s;
+        background-color: #242323;
+    }
+
+    #result,#resultOfSpent {
+        margin-top: 20px;
+        background: #000000c7;
+        color: white;
+        padding: 10px;
+        border-radius: 13px;
+        max-width: 400px;
+    }
+
+    .mainDiv {
+       
+    }
+</style>
+
+<body>
+    <div class="mainDiv">
+        <div class="container">
+            <h1>Vehicle Mileage Calculator</h1>
+            <input type="number" id="distance" placeholder="Total Distance Driven (km)">
+            <input type="number" id="petrolPrice" placeholder="Petrol Price per Litre">
+            <input type="number" id="amountSpent" placeholder="Total Amount Spent">
+            <button onclick="calculateMileage()">Calculate Mileage</button>
+            <div id="result">Mileage: 0.00 km/litre</div>
+        </div>
+        <div class="container">
+            <h1>Vehicle Fuel Spent Calculator</h1>
+            <input type="number" id="Totaldistance" placeholder="Total Distance Driven (km)">
+            <input type="number" id="avgpetrolPrice" placeholder="Avarage Fuel Price/litre">
+            <input type="number" id="avarageMileage" placeholder="Avarage Mileage">
+            <button onclick="SpentFuel()">Calculate Spent Price</button>
+            <div id="resultOfSpent">Price: ₹0 </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateMileage() {
+            let distance = document.getElementById('distance').value;
+            let petrolPrice = document.getElementById('petrolPrice').value;
+            let amountSpent = document.getElementById('amountSpent').value;
+
+            if (distance && petrolPrice && amountSpent) {
+                let litresOfPetrol = amountSpent / petrolPrice;
+                let mileage = distance / litresOfPetrol;
+                document.getElementById('result').innerText = `Mileage: ${mileage.toFixed(2)} km/litre`;
+            } else {
+                document.getElementById('result').innerText = 'Please enter all values.';
+            }
+        }
+        function SpentFuel() {
+            let Totaldistance = document.getElementById('Totaldistance').value;
+            let avgpetrolPrice = document.getElementById('avgpetrolPrice').value;
+            let avarageMileage = document.getElementById('avarageMileage').value;
+
+            if (Totaldistance && avgpetrolPrice && avarageMileage) {
+                let totalFuelUsed = Totaldistance / avarageMileage;
+                let totalCost = totalFuelUsed * avgpetrolPrice;
+                document.getElementById('resultOfSpent').innerText = `Price: ₹${totalCost.toFixed(2)}`;
+            } else {
+                document.getElementById('resultOfSpent').innerText = 'Please enter all values.';
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
